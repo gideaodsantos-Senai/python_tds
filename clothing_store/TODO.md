@@ -1,0 +1,21 @@
+# TODO List for Clothing Store Project
+
+- [x] Create project directory structure (clothing_store/)
+- [x] Create requirements.txt
+- [x] Create .env file
+- [x] Create models.py for DB operations
+- [x] Create app.py with all routes
+- [x] Create data/seed.py for DB creation and seeding
+- [x] Create static/css/style.css with custom styles
+- [x] Create templates/base.html
+- [x] Create templates/index.html
+- [x] Create templates/products.html
+- [x] Create templates/product_detail.html
+- [x] Create templates/cart.html
+- [x] Create templates/checkout.html
+- [x] Create templates/admin.html
+- [x] Create templates/login.html
+- [x] Create README.md
+- [x] Create smoke_test.py
+- [x] Run seed.py to initialize DB
+- [x] Test the application locally

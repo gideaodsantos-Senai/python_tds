@@ -1,0 +1,5 @@
+horas = (int(input("Digite a quantidade de horas você assiste na semana: ")))
+streaming = (int(input("Digite o preço mensal que você paga pelo serviço de streaming: ")))
+custo_semanal = (streaming / 4)
+custo_hora = (custo_semanal / horas)
+print(f"O custo por hora do serviço de streaming é de: R$ {custo_hora:.2f}")

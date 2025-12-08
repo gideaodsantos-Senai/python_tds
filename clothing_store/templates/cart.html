@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Cart - Clothing Store{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h1>Your Cart</h1>
+    {% if cart_items %}
+    <form method="POST" action="{{ url_for('update_cart') }}">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="text-align: left; padding: var(--spacing-sm);">Product</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.size }}</td>
+                    <td><input type="number" name="qty_{{ item.product.id }}_{{ item.size }}" value="{{ item.quantity }}" min="1"></td>
+                    <td>${{ "%.2f"|format(item.product.price) }}</td>
+                    <td>${{ "%.2f"|format(item.subtotal) }}</td>
+                    <td><a href="{{ url_for('remove_from_cart', key=item.product.id ~ '_' ~ item.size) }}" class="btn btn-secondary">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p style="text-align: right; font-weight: 600;">Total: ${{ "%.2f"|format(total) }}</p>
+        <button type="submit" class="btn">Update Cart</button>
+        <a href="{{ url_for('checkout') }}" class="btn">Proceed to Checkout</a>
+    </form>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+</section>
+{% endblock %}

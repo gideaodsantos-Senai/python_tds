@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - Clothing Store{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h1>Admin Panel</h1>
+    <h2>Add/Edit Product</h2>
+    <form method="POST">
+        <input type="hidden" name="action" value="add" id="action">
+        <input type="hidden" name="id" id="product_id">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+        </div>
+        <div class="form-group">
+            <label for="image_url">Image URL:</label>
+            <input type="url" id="image_url" name="image_url" required>
+        </div>
+        <div class="form-group">
+            <label for="sizes">Sizes (comma-separated):</label>
+            <input type="text" id="sizes" name="sizes" required>
+        </div>
+        <button type="submit" class="btn">Save Product</button>
+    </form>
+    <h2>Existing Products</h2>
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="text-align: left; padding: var(--spacing-sm);">Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>${{ "%.2f"|format(product.price) }}</td>
+                <td>
+                    <button onclick="editProduct({{ product.id }}, {{ product.name|tojson }}, {{ product.description|tojson }}, {{ product.price }}, {{ product.category|tojson }}, {{ product.image_url|tojson }}, {{ product.sizes|tojson }})" class="btn btn-secondary">Edit</button>
+                    <form method="POST" style="display: inline;">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="id" value="{{ product.id }}">
+                        <button type="submit" class="btn btn-secondary">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+<script>
+function editProduct(id, name, description, price, category, image_url, sizes) {
+    document.getElementById('action').value = 'edit';
+    document.getElementById('product_id').value = id;
+    document.getElementById('name').value = name;
+    document.getElementById('description').value = description;
+    document.getElementById('price').value = price;
+    document.getElementById('category').value = category;
+    document.getElementById('image_url').value = image_url;
+    document.getElementById('sizes').value = sizes;
+}
+</script>
+{% endblock %}
