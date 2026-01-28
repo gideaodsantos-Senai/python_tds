@@ -35,4 +35,4 @@ else:
         if possui_casa_propria == 0: # Não
             print('Não pode realizar empréstimo.')
         else:
-            print('Conceder empréstimo.')
+            print('Conceder empréstimo.') 
