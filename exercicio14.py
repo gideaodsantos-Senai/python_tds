@@ -9,3 +9,4 @@ print(f"A soma dos números é: {sum(numeros)}")
 print(f"O maior número é: {max(numeros)}")
 print(f"O menor número é: {min(numeros)}")
 print(f"A média dos números é: {sum(numeros) / len(numeros)}")
+ 
